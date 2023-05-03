@@ -1,0 +1,120 @@
+{% extends './header.html' %}
+{% load static %}
+{% block body1 %}
+    <div class="view-post">
+        <div class="view-post-head">
+            <h1>{{post.role.upper}}</h1>
+            {% if canedit %}
+                <a href="../editpost/{{post.id}}" style="margin-left: auto; margin-right: 2rem;"><button class="btn btn-danger">Edit</button></a>
+            {% endif %}
+            {% if post.is_active and eligible%}
+            <a href="../apply/{{post.id}}"><button class="btn btn-primary" style="background:#6770d2;">Apply</button></a>
+            {% endif %}
+        </div>
+        <div class="post">
+            <h5><strong>Company -</strong> </h5>
+            <a href="../viewcomp/{{post.comp.id}}"><div class="post-comp">{{post.comp}}</div></a></div>
+            <div class="post">
+                <h5><strong>Package: </strong>{{post.package}} L</h5>
+            </div>
+            <div class="post">
+                <h5><strong>POC:</strong></h5>
+                <a href="/public_profile_view/{{post.comp.poc}}" style="color: white;">
+                <div class="post-img">
+                        <img src="../media/{{post.comp.poc.profile.profile_pic}}">
+                        <div class="post-poc">{{post.comp.poc}}</div>
+                </div></a>
+            </div>
+            <div class="post">
+                <h5><strong>Branches open to- </strong></h5>
+                <div style="word-spacing: 1rem;">
+                {% for branch in post.cutoff_cgpa.all %}
+                    {{branch.cgpa_branch}}-{{branch.cutoff_cgpa}} 
+                {% endfor %}
+            </div>
+            </div>
+            <div class="post">
+                <h5><strong>Is active :</strong></h5>
+                {{post.is_active}}
+            </div>
+            <div class="post">
+                <h5><strong>Deadline to apply:-</strong></h5>
+                <strong>{{post.deadline}}</strong>
+            </div>
+            <div class="post" style="border-bottom: solid; border-color: rgb(163, 163, 163); border-width: medium; padding-bottom: 1rem;">
+                <h5><strong>Application open date:- </strong></h5>
+                {{post.open_date}}
+            </div>
+            <div>
+                <h5><strong>DETAILS: </strong></h5>
+                {{post.description}}
+            </div>
+    </div>
+    <style>
+        .view-post{
+            max-width: 1400px;
+            min-width: 70%;
+            margin: auto;
+            background: white;
+            padding: 3%;
+            margin-top: 2rem;
+            display: grid;
+            gap: 2rem;
+        }
+        .view-post-head>h1{
+            padding-left: 2%;
+            color: rgb(77, 77, 77);
+            letter-spacing: 2px;
+            font-weight: bolder;
+        }
+        .view-post-head{
+            display: flex;
+            padding-bottom:1rem ;
+            border-bottom: solid;
+            border-color: rgb(161, 161, 161);
+            align-items: center;
+            width: 100%;
+        }
+        .post-comp{
+            padding: 1rem;
+            background: rgb(243, 243, 243);
+            width: 8rem;
+        }
+        .post{
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .post-poc{
+            display: flex;
+        }
+        img{
+            width: 3rem;
+            height: 3rem;
+            border-radius: 1.5rem;
+        }
+
+        .post-img{
+            display: flex;
+            align-items: center;
+            background: rgb(43, 16, 40);
+            padding: 0.5rem;
+            padding-right: 1rem;
+            border-radius: 2rem;
+            gap: 1rem;
+        }
+
+        .post>a{
+            text-decoration: none;
+            font-weight: bolder;
+            letter-spacing: 1.5px;
+            font-size: 1.25rem;
+        }
+
+        .post-img:hover{
+            transform: scale(1.1, 1.1);
+        }
+
+    </style>
+{% endblock %}

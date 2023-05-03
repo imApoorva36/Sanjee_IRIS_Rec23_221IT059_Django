@@ -1,0 +1,99 @@
+
+
+.reg-userform-form{
+    max-width: 600px;
+    margin: auto;   
+}
+
+.alert{
+    max-width: 1000px;
+    margin: auto;
+}
+.reg-container{
+    margin-top: 10%;
+}
+
+.table{
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    background: white;
+    filter: drop-shadow(0 0 1rem #c7c7c7);
+}
+.table-cont{
+    background:rgb(237, 237, 237);
+}
+
+html{
+    background: rgb(237, 237, 237);
+}
+body{
+    background:rgb(237, 237, 237);
+    background-color: rgb(237, 237, 237);
+}
+
+/* .table-user{
+    padding: 1rem;
+    max-width: 15rem;
+} */
+/* .table-user-cont{
+    max-width: 15rem;
+    background: rgb(237, 237, 237)
+} */
+
+.table-user-cont:hover{
+    filter: drop-shadow(0 0 1rem rgb(151, 150, 150));
+}
+
+
+.container:hover{
+    background: #6770d2;
+    cursor: pointer;
+}
+
+.check:checked{
+    background: #6770d2;
+}
+
+.container{
+    background:rgb(160, 254, 67);
+}
+
+
+
+.add-comp{
+    background: white;
+    max-width: 1200px;
+    margin: auto;
+    padding: 4%;
+    height: max-content;
+    margin-top: 5rem;
+}
+.select-poc{
+    height: 2rem;
+    width: auto;
+}
+
+.add-comp-branch{
+    display: grid;
+    gap: 1rem;
+}
+.container1{
+    filter: drop-shadow(0 0 0.25rem rgb(214, 214, 214));
+    background: white;
+}
+.container1:hover{
+    background: #6770d2;
+    cursor: pointer;
+}
+
+.branch-div{
+    background: #6770d2;
+    padding: 1rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-weight: bolder;
+    color: white;
+}

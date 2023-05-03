@@ -1,0 +1,75 @@
+{% extends './header.html' %}
+{% load static %}
+{% block body1 %}
+
+
+
+<style>
+    .branch-div{
+    background: #6770d2;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-weight: bolder;
+    color: white;
+}
+.add-comp{
+  max-width: 1400px;
+  min-width: 75%;
+  margin: auto;
+  margin-top: 2rem;
+  display: grid;
+  gap: 2rem;
+}
+.add-comp>h1{
+  font-weight: bold;
+  color: rgb(73, 73, 73);
+  padding-bottom: 1rem;
+  border-bottom: solid;
+}
+
+</style>
+
+<div class="add-comp">
+  <h1>Add company</h1>
+    <form action="{% url 'addcomp' %}" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Name of the company</label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="Enter new Name" name="name" >
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">description :</label>
+            <input type="text" class="form-control" id="inputPassword4" placeholder="description" name="description" >
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">Select a POC</label>
+            <select id="inputState" class="form-control" name="poc" style="overflow-y: scroll;">
+              <option selected >Choose a POC</option>
+              {% for poc in pocs %}
+                    <option value="{{poc.id}}" style="display: 2rem;">
+                            <strong>{{poc}}</strong> 
+                    </option>   
+                {% endfor %}
+            </select>
+          </div>
+
+ <div class="form-group">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck" name="isactive">
+            <label class="form-check-label" for="gridCheck">
+              isActive
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="background: #6770d2; width: 15%;">Next</button>
+      </form>
+</div>
+
+{% endblock %}
+ 

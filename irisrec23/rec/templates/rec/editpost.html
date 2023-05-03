@@ -1,0 +1,192 @@
+{% extends './header.html' %}
+{% load static %}
+{% block body1 %}
+
+<div class="modal-body">
+    <h1>Edit Post</h1>
+    <small style="font-size: 1rem;">All the details of the post have been provided adjacent to thier respective fields. So just fill the fields which you want to edit. otherwise leave the feild empty so no changes will happen.</small>
+    <form action="{% url 'editpost' id=post.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputEmail1">Post Name :- <strong>{{post.role}}</strong></label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="New Post name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">CTC :- <strong>{{post.package}}</strong></label>
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="New CTC" name="package" step="any" >
+          </div>
+        <label for="exampleInputEmail1" style="font-size: 1.5rem; word-spacing: 1rem;">Branches Open :- {% for b in cgpa %} <strong>{{b.cgpa_branch}}</strong>-{{b.cutoff_cgpa}} {%endfor%}</label><br></br>
+        <div class="cgpa-branch">
+        <div class="add-comp-branch" >
+            {% for branch in branches %}
+                <div style="display: grid; width:7rem;" >
+                    <label class="container1" style="border-width: 1px; border-color: black; border-style: solid; border-radius: 1rem; padding: 0.5rem;" >{{branch}}
+                        <input type="checkbox"  name="{{branch.name}}" class="{{branch.name}}" id="{{branch.id}}" onclick="clickfun()">
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+        <h6 style="padding-top:1rem ; font-weight: 800; ">Give the CGPA cutoff for the selected branches:-</h6><small><strong>NOTE:-</strong>Leave the feild empty if there is no CGPA cutoff for that particular branch</small>
+        <div id="select-branch" class="form-floating"></div></div>
+        <div class="timeline">
+        <div class="open_date" style="padding-right: 10%; border-right: solid; border-width: thin;">
+            <label for="opendateid"><strong>Application opening date and Time :- </strong>{{post.open_date}}</label>
+            <input type="date" name="opendate" id="opendateid">
+            <label for="opentimeid"><strong>Time</strong></label>
+            <input type="time" name="opentime" id="opentimeid">
+        </div>
+        <div class="open_date">
+            <label><strong>Application closing date and time :- </strong>{{post.deadline}}</label>
+            <input type="date" name="dead_date">
+            <label ><strong>Time</strong></label>
+            <input type="time" name="dead_time">
+        </div>
+    </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+</div>
+
+<script>
+    function delete_post(){
+        alert("Are u Sure");
+    }
+
+    function clickfun(){
+        document.getElementById("select-branch").innerHTML = null
+        for(let i = 1 ; i <= 10; i++){
+            if(document.getElementById(i).checked == true){
+            const newdiv = document.createElement("input");
+            const newlabel = document.createElement("label")
+            newdiv.type = Number;
+           let name1 = document.getElementById(i).className;
+           newdiv.name = name1+"branch"
+           newdiv.className = "form-control"
+           newdiv.placeholder = name1;
+           newdiv.id = "floatinginput"
+           document.getElementById("select-branch").appendChild(newdiv);
+           
+        }
+        }
+    }
+
+</script>
+
+<style>
+
+.modal-body{
+    max-width: 1400px;
+    margin: auto;
+    margin-top: 2rem;
+    padding: 3rem;
+    background: white;
+}
+
+    .alert{
+        margin-top: 4%;
+        max-width: 1200px;
+    }
+    .table{
+        
+        margin: auto;
+        filter: drop-shadow(0 0 1rem rgb(181, 181, 181));
+    }
+    .addpost{
+        max-width: 1200px;
+        margin: auto;
+        background: white;
+        padding-left: 4%;
+        padding-right: 4%;
+        padding-bottom: 4%;
+        padding-top: 2%;
+        margin-top: 1%;
+    }
+
+    .branches{
+        display: grid;
+        grid-template-columns: 6rem 6rem 6rem 6rem 6rem;
+        margin-bottom: 2rem;
+    }
+    .branch-div{
+    background: #6770d2;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-weight: bolder;
+    color: white;
+}
+.modal-dialog{
+    max-width: 1000px;
+}
+
+.addpost>h1{
+    font-size: 3rem;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+.addpost>h3{
+    font-weight: bolder;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.addpost>p{
+    font-size: 1.25rem;
+    margin-left: 5%;
+    color: gray;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border-bottom: black;
+    border-bottom: solid;
+    padding: 1rem;
+}
+.post-body>h6{
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    letter-spacing: 1.5px;
+}
+.post-body{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.add-comp-branch{
+    display: grid;
+    grid-template-columns: 7rem 7rem 7rem 7rem 7rem;
+    gap: 1rem;
+}
+.cgpa-branch{
+    gap: 1rem;
+}
+.selected-branch-cgpa{
+    display: grid;
+    gap: 1rem;
+}
+.branch-div{
+    height: 2rem;
+}
+.form-floating{
+    display: grid;
+    grid-template-columns: 7rem 7rem 7rem 7rem 7rem;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+.open_date{
+    display: grid;
+    width: 30%;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.timeline{
+    display: flex;
+    gap: 2rem;
+}
+
+</style>
+
+
+{% endblock %}

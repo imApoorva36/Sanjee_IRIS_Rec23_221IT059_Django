@@ -1,0 +1,116 @@
+{% extends './header.html' %}
+{% load static %}
+{% block body1 %}
+
+
+
+<style>
+.application-form{
+    min-width: 70%;
+    max-width: 1400px;
+    margin: auto;
+    margin-top: 2rem;
+}
+.add-comp{
+    min-width: 70%;
+    max-width: 1400px;
+    margin: auto;
+    margin-top: 2rem;
+}
+.add-comp>h2{
+    font-weight: bolder;
+    color: rgb(78, 78, 78);
+    border-bottom: solid;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+}
+.post-detail{
+    background: white;
+    padding: 3rem;
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.post-detail>h1{
+    font-size: 2rem;
+    font-weight: bolder;
+    color: rgb(52, 52, 52);
+    border-bottom: solid;
+    padding-bottom:1rem ;
+    padding-left: 2rem;
+}
+
+.input-text{
+    display: grid;
+
+}
+.input-text>textarea{
+    min-width: 200%;
+    margin: auto;
+    min-height: 25rem;
+}
+.profile-info{
+    display: flex;
+    background: white;
+}
+.profile-pic>img{
+    width: 15rem;
+    height: 15rem;
+    border: solid;
+}
+.profile-pic{
+    height: min-content;
+    margin-top: 8rem;
+    margin-right: 5rem;
+}
+.profile-pic>h4{
+    font-weight: bolder;
+    letter-spacing: 1.5px;
+    color: gray;
+    margin-left: 1rem;
+}
+</style>
+<div class="application-form">
+
+    <div class="post-detail">
+        <h1>POST deatails</h1>
+        <h2>Company : <strong>{{post.comp}}</strong></h2>
+        <h3>Name : {{post}} </h3>
+        <h5>Package : {{post.package}}</h5>
+        <h5>POC : {{post.comp.poc}}</h5>
+        <h5>Deadline : {{post.deadline}}</h5>
+    </div>
+<div class="profile-info">
+    <div class="post-detail" style="width: 200vw;">
+        <h1>Student details</h1>
+        <h2>Username : <strong>{{profile.student}}</strong></h2>
+        <h5>Email-id : {{profile.student.email}}</h5>
+        <h5>Register number : {{profile.register_no}}</h5>
+        <h5>Branch : {{profile.choose_branch}}</h5>
+        <h5>Resume : <a href="../../../media/{{profile.resume}}">{{profile.resume}}</a></h5>
+    </div>
+    <div class="profile-pic">
+        <h4>Student Photo</h4>
+        <img src="../../../media/{{profile.profile_pic}}">
+    </div>
+</div>
+<div class="add-comp">
+    <h2>Write Application</h2>
+    <form action="{% url 'apply' id=post.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <div class="input-text">
+                <label for="inputEmail4">Description</label>
+                <textarea name="description"></textarea> 
+            </div>     
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Next</button>
+      </form>
+</div>
+</div>
+{% endblock %}
+ 

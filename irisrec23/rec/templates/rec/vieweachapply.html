@@ -1,0 +1,93 @@
+{% extends './header.html' %}
+  {% load static %}
+  {% block body1 %}
+    <div class="view-apply">
+        <div class="apply-post">
+            <h1>Application for post <strong>"{{application.applied_post.role.upper}}"</strong></h1>
+            <h2>Company name : <strong>{{application.applied_post.comp}}</strong></h2>
+        </div>
+        <div class="apply-profile">
+            <h1>Student Details</h1>
+            <div class="apply-profile-body">
+            <h2>Username : <strong>{{application.applied_student}}</strong></h2>
+
+            <h2>Fullname : <strong>{{application.student_profile.firstname}} {{application.student_profile.lastname}}</strong></h2>
+            <h4>Branch : {{application.student_profile.choose_branch}}</h4>
+            <h4>Register number : {{application.student_profile.register_no}}</h4>
+            <h4>CGPA : {{application.student_profile.student_cgpa}}</h4>
+            <h4>Resume : <a href="../../../media/{{application.student_profile.resume}}">{{application.student_profile.resume}}</a></h4>
+        </div>
+    </div>
+        <div class="apply-description">
+            <h1>Application</h1>
+            <p>{{application.description}}</p>
+        </div>
+        
+    </div>
+
+    <style>
+        .view-apply{
+            min-width: 75%;
+            max-width: 1500px;
+            padding: 3rem;
+            margin: auto;
+            display: grid;
+            background: white;
+            filter: drop-shadow(0 0 1rem rgb(108, 108, 212));
+            margin-top: 2rem;
+        }
+        .apply-post{
+            padding: 1rem;
+            padding-left: 2rem;
+            display: grid;
+            gap: 1rem;
+            border-bottom: solid;
+            color: rgba(47, 4, 93, 0.945);
+        }
+        .apply-post>h1,.apply-post>h2{
+            font-weight:550;
+            filter: drop-shadow(0 0 1 rgb(225, 128, 128));
+            background: white;
+        }
+        .apply-profile{
+            display: grid;
+            gap: 1rem;
+            padding: 1rem;
+            padding-left: 2rem;
+            border-bottom: solid;
+        }
+        .apply-profile>h1{
+            color: rgb(57, 57, 57);
+            font-weight: bolder;
+            border-left: solid;
+            border-width: 0.5rem;
+            padding-left: 2rem;
+            border-color: rgb(52, 20, 126);
+            font-size: 2rem;
+        }
+        .apply-profile-body{
+            display: grid;
+            gap: 1rem;
+            padding-left: 7%;
+        }
+        .apply-description{
+            padding: 1rem;
+            padding-left: 2rem;
+            display: grid;
+            gap: 1rem;
+        }
+        .apply-description>h1{
+            color: rgb(57, 57, 57);
+            font-weight: bolder;
+            border-left: solid;
+            border-width: 0.5rem;
+            padding-left: 2rem;
+            border-color: rgb(52, 20, 126);
+            font-size: 2rem;
+        }
+        .apply-description>p{
+            font-size: 1.5rem;
+            margin-left: 5rem;
+        }
+    </style>
+    {% endblock %}

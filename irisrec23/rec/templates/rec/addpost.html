@@ -1,0 +1,254 @@
+{% extends './header.html' %}
+{% load static %}
+{% block body1 %}
+
+
+
+<div class="alert alert-primary" role="alert">
+    Now add new <strong>Posts</strong> to the company
+</div>
+
+<div class="addpost">
+    <h1>{{comp.name.upper}}</h1>
+    <p>{{comp.description}}</p>
+
+    <h3>Add a POST for this company</h3>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+       Add a Post
+    </button>
+
+    <div class="post-body">
+        <h6><strong>Posts added :-</strong></h6>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Adding a POST</strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+
+                <form action="{% url 'addpost' id=ids %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Post Name</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Post name" name="post" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Post Description</label>
+                        <textarea class="form-control" aria-describedby="emailHelp" placeholder="Post Description" name="description" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">CTC</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="CTC" name="package" step="any" required>
+                      </div>
+                    <label for="exampleInputEmail1" style="font-size: 1.5rem;">Select Branches</label><br></br>
+                    <div class="cgpa-branch">
+                    <div class="add-comp-branch" >
+                        {% for branch in branches %}
+                            <div style="display: grid; width:7rem;" >
+                                <label class="container1" style="border-width: 1px; border-color: black; border-style: solid; border-radius: 1rem; padding: 0.5rem;" >{{branch}}
+                                    <input type="checkbox"  name="{{branch.name}}" class="{{branch.name}}" id="{{branch.id}}" onclick="clickfun()">
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <h6 style="padding-top:1rem ; font-weight: 800; ">Give the CGPA cutoff for the selected branches:-</h6><small><strong>NOTE:-</strong>Leave the feild empty if there is no CGPA cutoff for that particular branch</small>
+                    <div id="select-branch" class="form-floating"></div></div>
+                    <div class="timeline">
+                    <div class="open_date" style="padding-right: 10%; border-right: solid; border-width: thin;">
+                        <label for="opendateid"><strong>Application opening date and Time</strong></label>
+                        <input type="date" name="open_date" id="opendateid">
+                        <label for="opentimeid"><strong>Time</strong></label>
+                        <input type="time" name="open_time" id="opentimeid">
+                    </div>
+                    <div class="open_date">
+                        <label><strong>Application closing date and time</strong></label>
+                        <input type="date" name="deadline_date">
+                        <label ><strong>Time</strong></label>
+                        <input type="time" name="deadline_time">
+                    </div>
+                </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">PostName</th>
+            <th scope="col">Package</th>
+            <th scope="col">Branches open to - CGPA cutoff for this branch</th>
+            <th scope="col">Deadline</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for comp in comp.post.all %}  
+            <tr>
+                <th scope="row" style="width: 3rem;">{{forloop.counter}}</th>
+                <td style="font-weight: bolder; letter-spacing: 1.5px;"><strong>{{comp.role.upper}}</strong></td>
+                <td>{{comp.package}} L</td>
+                <td style="word-spacing: 1rem;"> {% for cgpa in comp.cutoff_cgpa.all %}
+                    <strong>{{cgpa.cgpa_branch}}</strong>-{{cgpa.cutoff_cgpa}}  
+                {% endfor %}</td>
+                <td>
+                {{comp.deadline}}
+            </td>
+                <!-- <td><a href="../deleting_the_selected_post/{{comp.id}}">
+                    <button type="button" class="btn btn-danger" onclick="delete_post()">Delete</button></a>
+                </td> -->
+            </tr>
+            {% endfor %}
+
+           
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function delete_post(){
+        alert("Are u Sure");
+    }
+
+    function clickfun(){
+        document.getElementById("select-branch").innerHTML = null
+        for(let i = 1 ; i <= 10; i++){
+            if(document.getElementById(i).checked == true){
+            const newdiv = document.createElement("input");
+            const newlabel = document.createElement("label")
+            newdiv.type = Number;
+           let name1 = document.getElementById(i).className;
+           newdiv.name = name1+"branch"
+           newdiv.className = "form-control"
+           newdiv.placeholder = name1;
+           newdiv.id = "floatinginput"
+           document.getElementById("select-branch").appendChild(newdiv);
+           
+        }
+        }
+    }
+
+</script>
+
+<style>
+    .alert{
+        margin-top: 4%;
+        max-width: 1200px;
+    }
+    .table{
+        
+        margin: auto;
+        filter: drop-shadow(0 0 1rem rgb(181, 181, 181));
+    }
+    .addpost{
+        max-width: 1200px;
+        margin: auto;
+        background: white;
+        padding-left: 4%;
+        padding-right: 4%;
+        padding-bottom: 4%;
+        padding-top: 2%;
+        margin-top: 1%;
+    }
+
+    .branches{
+        display: grid;
+        grid-template-columns: 6rem 6rem 6rem 6rem 6rem;
+        margin-bottom: 2rem;
+    }
+    .branch-div{
+    background: #6770d2;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-weight: bolder;
+    color: white;
+}
+.modal-dialog{
+    max-width: 1000px;
+}
+
+.addpost>h1{
+    font-size: 3rem;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+.addpost>h3{
+    font-weight: bolder;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.addpost>p{
+    font-size: 1.25rem;
+    margin-left: 5%;
+    color: gray;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border-bottom: black;
+    border-bottom: solid;
+    padding: 1rem;
+}
+.post-body>h6{
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    letter-spacing: 1.5px;
+}
+.post-body{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.add-comp-branch{
+    display: grid;
+    grid-template-columns: 7rem 7rem 7rem 7rem 7rem;
+    gap: 1rem;
+}
+.cgpa-branch{
+    gap: 1rem;
+}
+.selected-branch-cgpa{
+    display: grid;
+    gap: 1rem;
+}
+.branch-div{
+    height: 2rem;
+}
+.form-floating{
+    display: grid;
+    grid-template-columns: 7rem 7rem 7rem 7rem 7rem;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+.open_date{
+    display: grid;
+    width: 30%;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.timeline{
+    display: flex;
+    gap: 2rem;
+}
+
+</style>
+
+{% endblock %}
+ 

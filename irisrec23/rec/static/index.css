@@ -1,0 +1,41 @@
+
+.index{
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    min-height: 500px;
+    max-height: 1000px;
+    display: grid;
+    background: white;
+    
+}
+.btn-primary{
+    width: 17rem;
+}
+.login-but{
+    max-width: 100rem;
+    margin: auto;
+   
+}
+.reg-but{
+    margin: auto;
+    display: grid;
+    gap: 1rem;
+}
+
+.table-cont{
+    max-width: 1000px;
+    margin: auto;
+}
+.table{
+    max-width: 900px;
+    margin: auto;
+}
+/* Styling for register form */
+
+.header-cont{
+    width: 100vw;
+    height: 5rem;
+    background: green;
+}

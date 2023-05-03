@@ -1,0 +1,173 @@
+{% extends './header.html' %}
+{% load static %}
+{% block body1 %}
+<style>
+    .addpoc-form{
+        max-width: 45rem;
+        margin: auto;
+        margin-top: 1rem;
+        display: grid;
+        gap: 1rem;
+        padding: 2%;
+        background: white;
+    }
+    .addpoc-form>form{
+        display: grid;
+        gap: 1rem;
+    }
+    .addpoc-cont{
+        display: grid;
+        max-width: 2800px;
+        margin: auto;
+    }
+    .table{
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 10rem;
+}
+.table-cont{
+    width: 1500px;
+    margin: auto;
+}
+</style>
+<div class="addpoc-cont">
+<div class="addpoc-form">
+    <h4>Search User with Roll number</h4>
+    <form action="{% url 'search'%}" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+        <div class="col">
+            <input type="search" class="form-control" placeholder="Search with roll number" name="roll">
+        </div>
+        </div>
+        <button type="submit" class="btn btn-success">Search</button>
+    </form>
+</div>
+
+
+{% if get_user %}
+<div class="table-cont">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Student</th>
+            <th scope="col">Role</th>
+            <th scope="col">Add / remove POC</th>
+            {% if request.user.is_superuser %}
+                <th scope="col">Add / remove Admin</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+            {% for user in get_user %}
+        <tr>
+            <th scope="row">{{user.id}}</th>
+            
+                <td style="font-weight:800;">
+                 <div class="table-user-cont" style="background:rgb(231, 231, 231) ;"> 
+                    <a href="../home" style="text-decoration: none; color: black; background: rgb(231, 231, 231);">
+                    <div class="table-user" style="background:rgb(231, 231, 231);" >
+                        {{user.student.username}}
+                    </div>
+                </a>
+            </div> 
+                </td>
+            
+            <td style="font-weight:800; letter-spacing: 1px;">{{user.student.groups.get}}</td>
+            <td>
+                <form action="{% url 'addpoc' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_id" value="{{user.student.id}}">
+                    {% if user.student.groups.get.name == "POC" %}
+                    <button type="submit" class="btn btn-primary" style="background:#6770d2;">Remove from <strong>POC</strong></button>
+                    {% else %}
+                    <button type="submit" class="btn btn-primary" style="background:#6770d2;">Add as <strong>POC</strong></button>
+                    {% endif %}
+                </form>
+            </td>
+            {% if request.user.is_superuser %}
+                <td>
+                    <form action="{% url 'addadmin' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{user.student.id}}">
+                        {% if user.student.groups.get.name == "student" or user.student.groups.get.name == "POC" %}
+                        <button type="submit" class="btn btn-primary" style="background:#6770d2;">Add as ADMIN</button>
+                        {% else %}
+                        <button type="submit" class="btn btn-primary" style="background:#6770d2;">Remove from ADMIN</button>
+                        {% endif %}
+                    </form>
+                </td>
+            {% endif %}
+        </tr>
+
+        {% endfor%}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+
+
+<div class="table-cont">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Student</th>
+            <th scope="col">Role</th>
+            <th scope="col">Add / remove POC</th>
+            {% if request.user.is_superuser %}
+                <th scope="col">Add / remove Admin</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+        <tr>
+            <th scope="row">{{user.id}}</th>
+            
+                <td style="font-weight:800;">
+                 <div class="table-user-cont" style="background:rgb(231, 231, 231) ;"> 
+                    <a href="../home" style="text-decoration: none; color: black; background: rgb(231, 231, 231);">
+                    <div class="table-user" style="background:rgb(231, 231, 231);" >
+                        {{user.username}}
+                    </div>
+                </a>
+            </div> 
+                </td>
+            
+            <td style="font-weight:800; letter-spacing: 1px;">{{user.groups.get}}</td>
+            <td>
+                <form action="{% url 'addpoc' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_id" value="{{user.id}}">
+                    {% if user.groups.get.name == "POC" %}
+                    <button type="submit" class="btn btn-primary" style="background:#6770d2;">Remove from <strong>POC</strong></button>
+                    {% else %}
+                    <button type="submit" class="btn btn-primary" style="background:#6770d2;">Add as <strong>POC</strong></button>
+                    {% endif %}
+                </form>
+            </td>
+            {% if request.user.is_superuser %}
+                <td>
+                    <form action="{% url 'addadmin' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{user.id}}">
+                        {% if user.groups.get.name == "student" or user.groups.get.name == "POC" %}
+                        <button type="submit" class="btn btn-primary" style="background:#6770d2;">Add as ADMIN</button>
+                        {% else %}
+                        <button type="submit" class="btn btn-primary" style="background:#6770d2;">Remove from ADMIN</button>
+                        {% endif %}
+                    </form>
+                </td>
+            {% endif %}
+        </tr>
+
+        {% endfor%}
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}
+

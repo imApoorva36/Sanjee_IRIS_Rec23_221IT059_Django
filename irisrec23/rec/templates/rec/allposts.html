@@ -1,0 +1,36 @@
+{% extends './header.html' %}
+  {% load static %}
+  {% block body1 %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">POST name</th>
+        <th scope="col">Company name</th>
+        <th scope="col">POC</th>
+        <th scope="col">is_active</th>
+        <th scope="col">action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td><strong>{{post.role.upper}}</strong></td>
+          <td>{{post.comp}}</td>
+          <td>{{post.comp.poc}}</td>
+          <td>{{post.is_active}}</td>
+          <td><a href="../viewpost/{{post.id}}">View</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <style>
+    .table{
+        max-width: 1400px;
+        margin: auto;
+        margin-top: 2rem;
+    }
+  </style>
+
+  {%endblock%}

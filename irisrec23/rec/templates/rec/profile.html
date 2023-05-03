@@ -1,0 +1,95 @@
+{% extends './layout.html' %}
+{% load static %}
+{% block head %}
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+{%endblock%}
+{%block title%} registration {%endblock%}
+
+{% block body %}
+<div class="profile-info">
+  <strong>Please build your profile</strong>
+  <p>You can't use this application without making your profile. So providea all the details required to make your profile</p>
+</div>
+<div class="reg-container">
+<div class="reg-userform">
+  <h1>Profile</h1>
+    <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">First name</label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="Firstname" name="firstname">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Last name</label>
+            <input type="text" class="form-control" id="inputPassword4" placeholder="Lastname" name="lastname">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">Register number</label>
+            <input type="text" class="form-control" id="inputCity" name="rollno">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">Branch</label>
+            <select id="inputState" class="form-control" name="branch">
+              <option selected>Choose...</option>
+              {% for branch in branches %}
+                  <option value={{branch.id}}>{{branch}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputCity">CGPA</label>
+          <input type="number" class="form-control" id="inputCity" name="cgpa" step="any" required> 
+        </div>
+        <div style="display: grid; gap: 1.75rem;">
+        <div>
+        <label><strong>Profile Photo : </strong></label>
+        <input type="file" name="profile_pic">
+      </div>
+      <div>
+        <label><strong>Resume : </strong></label>
+        <input type="file" name="resume">
+      </div>
+        <button type="submit" class="btn btn-primary" style="max-width: 15rem; margin: auto; min-width: 25%;">Submit</button>
+      </div>
+    </form>
+
+</div>
+</div>
+
+<style>
+  .reg-userform{
+    max-width: 1200px;
+   margin: auto;
+   margin-top: 2rem;
+    
+    background: white;
+    padding: 2%;
+  }
+  .reg-userform>h1{
+    padding: 1%;
+    color: rgb(88, 88, 88);
+    font-weight: bolder;
+    border-bottom: solid;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+  }
+  .profile-info{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    padding: 2%;
+    margin-bottom:0rem ;
+    margin-top: 2rem;
+  }
+</style>
+
+{% endblock %}

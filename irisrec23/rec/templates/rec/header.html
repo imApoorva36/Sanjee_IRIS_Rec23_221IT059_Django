@@ -1,0 +1,170 @@
+{% extends './layout.html' %}
+  {% load static %}
+  {% block head %}
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="../../static/reg.css" /> 
+  {%endblock%}
+  {% block title %} Home {% endblock %}
+  {% block body %}
+  <div class="header-cont">
+    <a href="/home">Home</a>
+    <div class="home-profile">
+      <div class="dropdown">
+        <button class="btn bt margin: auto;n-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="../media/{{profile.profile_pic}}"><strong>{{request.user}}</strong> 
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="menu-header">
+              <img src="../media/{{profile.profile_pic}}"><strong>{{request.user}}</strong>
+              <a href="http://127.0.0.1:8000/logout/"><button type="button" class="btn btn-outline-dark" style="border: none; color: white; border-radius: 1rem; padding: 1rem;"><strong>Logout</strong></button></a>
+            </div>
+            <h6>My Account</h6>
+           
+              <a class="dropdown-item" href="/profile_view">Profile</a>
+            
+        </div>
+      </div>
+  </div>
+  </div>
+
+  <div class="home-body">
+    <div class="sidebar-container">
+      <div class="side-bar">
+        <a href="/allcomp">All companies</a>
+        <a href="/allposts">All Posts</a>
+        <a href="/">Eligible companies for you</a>
+        <a href="http://127.0.0.1:8000/applied_posts/">applied comany</a>
+        <a href="/">Watchlist</a>
+        {% if special_access %}
+          <a href="/addpoc">Give user access</a>
+          <a href="/addcomp">Add company</a>
+          <a href="../viewallapplications">View all Appliactions</a> 
+        {% endif %}
+        {% if is_poc %}
+        <a href="/">View applications</a> 
+        {%endif%}
+        {% if is_poc %}
+        <a href="/assignedcomp">Assigned Companies</a>
+        {% endif%}
+      </div>
+    </div>
+    
+  <style>
+
+
+.home-body{
+  display: flex;
+}
+.sidebar-container{
+  min-width: 10rem;
+  width: 15%;
+  height: 100vh;
+  background: white;
+  margin-top: 1rem;
+  border-right: solid;
+  border-width: thin;
+}
+.side-bar{
+  margin-top: 1rem;
+  display: grid;
+  background: white;
+  height: min-content;
+}
+.side-bar>a{
+  text-decoration: none;
+  padding: 5%;
+  border-width: thin;
+  color: rgb(71, 71, 71);
+  font-weight: 700;
+
+}
+.side-bar>a:hover{
+  background: rgb(231, 231, 231);
+}
+
+.home-profile{
+padding-left: 1rem;
+padding-top: 1rem;
+padding-bottom: 1rem;
+margin-left: auto;
+margin-right: 2rem;
+background: white;
+display: flex;
+width: min-content;
+}
+    .menu-header>img{
+  width: 5rem;
+  height: 3.5rem;
+  border-radius: 2.5rem;
+}
+.menu-header{
+    border-radius: 1rem 1rem 0 0;
+    padding: 1rem;
+    background:rgb(44, 34, 62);
+    color: white;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.dropdown-menu{
+  width: 20rem;
+  padding: 0;
+  padding-bottom: 1rem;
+  border-radius: 1rem;
+  height: max-content;
+  left: -10rem;
+  margin-top: 1rem;
+  filter: drop-shadow(0 0 1rem rgb(73, 57, 84));
+}
+.dropdown-menu>h6{
+  color: gray;
+  font-weight: 700;
+  padding: 1rem;
+}
+.dropdown-menu>a{
+  font-weight: 700;
+  color: rgb(101, 101, 101);
+  padding: 1rem;
+}
+.dropdown-toggle{
+  background:white;
+  border: transparent;
+  color: rgb(62, 62, 62);
+  letter-spacing: 1px;
+  border-left: solid;
+}
+
+.dropdown-toggle:hover{
+filter: drop-shadow(0 0 0.5rem rgb(203, 203, 203));
+background: white;
+color: black;
+}
+.btn>img{
+  width: 4rem;
+  height: 3.5rem;
+  margin-right: 0.5rem;
+}
+.dropdown-toggle::after{
+  color: black;
+}
+
+.header-cont{
+  height: max-content;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+.header-cont>a{
+    margin-left: 10%;
+    margin-right: auto;
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: none;
+}
+  </style>
+  {% block body1 %}
+  {% endblock %}
+  {% endblock %}
+  </div>

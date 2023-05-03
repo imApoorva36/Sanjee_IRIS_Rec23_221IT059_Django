@@ -1,0 +1,231 @@
+{% extends './header.html' %}
+  {% load static %}
+  {% block body1 %}
+      <div class="edit-form">
+
+        <form action="{% url 'editcomp' id=ids%}" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputEmail1">Company Name :- <strong>{{comp.name}}</strong></label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter New name of the Company" name="name" autocomplete="off" >
+            <small id="emailHelp" class="form-text text-muted">Leave the feild empty if you dont want to change the name of the company</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Company Description :- <strong>{{comp.description}}</strong></label>
+            <textarea class="form-control" id="exampleInputEmail1" placeholder="Enter New description for the Company" name="description" autocomplete="off" ></textarea>
+            <small id="emailHelp" class="form-text text-muted">Leave the feild empty if you dont want to change the description of the company</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">POC :</label>
+            <select id="inputState" class="form-control" name="poc">
+              <option selected value="{{comp.poc.id}}">{{comp.poc}}</option>
+              {% for poc in pocs %}
+              {% if poc != comp.poc %}
+              <option value="{{poc.id}}">{{poc}}</option>
+              {% endif %}{% endfor %}
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            {% if comp.isactive %}
+              <label>Deactivate the company : </label>
+              <input type="checkbox" name="deactivate" >
+            {% else  %}
+              <label>Activate the company : </label>
+              <input type="checkbox" name="activate" >
+            {% endif %}
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" style="margin-top: 2rem;" data-target="#exampleModalCenter">
+          Add a Post
+       </button>
+       <div class="post-body">
+        <h6><strong>Posts added :-</strong></h6>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Adding a POST</strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body"> 
+
+                <form action="{% url 'addpost_edit' id=ids %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Post Name</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Post name" name="post" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">CTC</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="CTC" name="package" step="any" required>
+                      </div>
+                    <label for="exampleInputEmail1" style="font-size: 1.5rem;">Select Branches</label><br></br>
+                    <div class="cgpa-branch">
+                    <div class="add-comp-branch" >
+                        {% for branch in branches %}
+                            <div style="display: grid; width:7rem;" >
+                                <label class="container1" style="border-width: 1px; border-color: black; border-style: solid; border-radius: 1rem; padding: 0.5rem;" >{{branch}}
+                                    <input type="checkbox"  name="{{branch.name}}" class="{{branch.name}}" id="{{branch.id}}" onclick="clickfun()">
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <h6 style="padding-top:1rem ; font-weight: 800; ">Give the CGPA cutoff for the selected branches:-</h6><small><strong>NOTE:-</strong>Leave the feild empty if there is no CGPA cutoff for that particular branch</small>
+                    <div id="select-branch" class="form-floating"></div></div>
+                    <div class="timeline">
+                    <div class="open_date" style="padding-right: 10%; border-right: solid; border-width: thin;">
+                        <label for="opendateid"><strong>Application opening date and Time</strong></label>
+                        <input type="date" name="open_date" id="opendateid">
+                        <label for="opentimeid"><strong>Time</strong></label>
+                        <input type="time" name="open_time" id="opentimeid">
+                    </div>
+                    <div class="open_date">
+                        <label><strong>Application closing date and time</strong></label>
+                        <input type="date" name="deadline_date">
+                        <label ><strong>Time</strong></label>
+                        <input type="time" name="deadline_time">
+                    </div>
+                </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+      </div>
+      <style>
+        .edit-form{
+          max-width: 1400px;
+          min-width: 75%;
+          margin: auto;
+          margin-top: 2rem;
+          padding: 3%;
+          background: white;
+        }
+        .alert{
+        margin-top: 4%;
+        max-width: 1200px;
+    }
+    .branches{
+        display: grid;
+        grid-template-columns: 6rem 6rem 6rem 6rem 6rem;
+        margin-bottom: 2rem;
+    }
+
+    .branch-div{
+    background: #6770d2;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-weight: bolder;
+    color: white;
+}
+.modal-dialog{
+    max-width: 1000px;
+}
+
+.addpost>h1{
+    font-size: 3rem;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+.addpost>h3{
+    font-weight: bolder;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.addpost>p{
+    font-size: 1.25rem;
+    margin-left: 5%;
+    color: gray;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border-bottom: black;
+    border-bottom: solid;
+    padding: 1rem;
+}
+.post-body>h6{
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    letter-spacing: 1.5px;
+}
+.post-body{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.add-comp-branch{
+    display: grid;
+    grid-template-columns: 7rem 7rem 7rem 7rem 7rem;
+    gap: 1rem;
+}
+.cgpa-branch{
+    gap: 1rem;
+}
+.selected-branch-cgpa{
+    display: grid;
+    gap: 1rem;
+}
+.branch-div{
+    height: 2rem;
+}
+.form-floating{
+    display: grid;
+    grid-template-columns: 7rem 7rem 7rem 7rem 7rem;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+.open_date{
+    display: grid;
+    width: 30%;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.timeline{
+    display: flex;
+    gap: 2rem;
+}
+      </style>
+      <script>
+        function delete_post(){
+            alert("Are u Sure");
+        }
+    
+        function clickfun(){
+            document.getElementById("select-branch").innerHTML = null
+            for(let i = 1 ; i <= 10; i++){
+                if(document.getElementById(i).checked == true){
+                const newdiv = document.createElement("input");
+                const newlabel = document.createElement("label")
+                newdiv.type = Number;
+               let name1 = document.getElementById(i).className;
+               newdiv.name = name1+"branch"
+               newdiv.className = "form-control"
+               newdiv.placeholder = name1;
+               newdiv.id = "floatinginput"
+               document.getElementById("select-branch").appendChild(newdiv);
+               
+            }
+            }
+        }
+    
+    </script>
+  {% endblock%}
+ 

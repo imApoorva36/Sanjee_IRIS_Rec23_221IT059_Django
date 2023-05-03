@@ -1,0 +1,209 @@
+{% extends './header.html' %}
+{% load static %}
+{% block body1 %}
+
+
+<div class="addpost">
+    <div class="addpost-head">
+    <h1>{{comp.name.upper}}</h1>
+    {% if canedit %}
+    <a href="../editcomp/{{comp.id}}" style="margin-left: auto; margin-right: 2rem;"><button class="btn btn-danger">Edit</button></a>{% endif %}
+</div> 
+    <p>{{comp.description}}</p>
+    <div class="post">
+        <h5><strong>POC:</strong></h5>
+        <a href="/" style="color: white;">
+        <div class="post-img">
+                <img src="../media/{{comp.poc.profile.profile_pic}}">
+                <div class="post-poc">{{comp.poc}}</div>
+        </div></a>
+        
+    </div>
+    <h5 style="margin-top: 2rem;"><strong>Is Active : {{comp.isactive}}</strong></h5>
+    <div class="post-body">
+        <h6><strong>Posts :-</strong></h6>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">PostName</th>
+            <th scope="col">Package</th>
+            <th scope="col">Application open date</th>
+            <th scope="col">Deadline</th>
+            <th scope="col">Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for comp in comp.post.all %}  
+            <tr>
+                <th scope="row" style="width: 3rem;">{{forloop.counter}}</th>
+                <td style="font-weight: bolder; letter-spacing: 1.5px;"><strong>{{comp.role.upper}}</strong></td>
+                <td>{{comp.package}} L</td>
+                <td> {{comp.open_date}}</td>
+                <td>
+                {{comp.deadline}}
+            </td>
+            <td><a href="../viewpost/{{comp.id}}">Details</a></td>
+                <!-- <td><a href="../deleting_the_selected_post/{{comp.id}}">
+                    <button type="button" class="btn btn-danger" onclick="delete_post()">Delete</button></a>
+                </td> -->
+            </tr>
+            {% endfor %}
+
+           
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .alert{
+        margin-top: 4%;
+        max-width: 1200px;
+    }
+    .table{
+        max-width: 1200px;
+        margin: auto;
+        filter: drop-shadow(0 0 1rem rgb(181, 181, 181));
+    }
+    .addpost{
+        max-width: 1200px;
+        margin: auto;
+        background: white;
+        padding-left: 4%;
+        padding-right: 4%;
+        padding-bottom: 4%;
+        padding-top: 2%;
+        margin-top: 1%;
+    }
+
+    .branches{
+        display: grid;
+        grid-template-columns: 6rem 6rem 6rem 6rem 6rem;
+        margin-bottom: 2rem;
+    }
+    .branch-div{
+    background: #6770d2;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-weight: bolder;
+    color: white;
+}
+.modal-dialog{
+    max-width: 1000px;
+}
+
+.addpost-head>h1{
+    font-size: 3rem;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+.addpost-head{
+    display: flex;
+    align-items: center;
+}
+.addpost>h3{
+    font-weight: bolder;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.addpost>p{
+    font-size: 1.25rem;
+    margin-left: 5%;
+    color: gray;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border-bottom: black;
+    border-bottom: solid;
+    padding: 1rem;
+}
+.post-body>h6{
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    letter-spacing: 1.5px;
+}
+.post-body{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.add-comp-branch{
+    display: grid;
+    grid-template-columns: 7rem 7rem 7rem 7rem 7rem;
+    gap: 1rem;
+}
+.cgpa-branch{
+    gap: 1rem;
+}
+.selected-branch-cgpa{
+    display: grid;
+    gap: 1rem;
+}
+.branch-div{
+    height: 2rem;
+}
+.form-floating{
+    display: grid;
+    grid-template-columns: 7rem 7rem 7rem 7rem 7rem;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+.open_date{
+    display: grid;
+    width: 30%;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.timeline{
+    display: flex;
+    gap: 2rem;
+}
+.post{
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .post-poc{
+            display: flex;
+        }
+        .post-img{
+            display: flex;
+            align-items: center;
+            background: rgb(43, 16, 40);
+            padding: 0.5rem;
+            padding-right: 1rem;
+            border-radius: 2rem;
+            gap: 1rem;
+        }
+        img{
+            width: 3rem;
+            height: 3rem;
+            border-radius: 1.5rem;
+        }
+
+        .post>a{
+            text-decoration: none;
+            font-weight: bolder;
+            letter-spacing: 1.5px;
+            font-size: 1.25rem;
+        }
+
+        .post-img:hover{
+            transform: scale(1.1, 1.1);
+        }
+        .addpost{
+            min-width: 80%;
+            margin: auto;
+            margin-top: 2rem;
+        }
+</style>
+
+{% endblock %}
+ 

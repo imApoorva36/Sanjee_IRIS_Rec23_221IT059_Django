@@ -1,0 +1,36 @@
+.table{
+    max-width: 500px;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background: white;
+    filter: drop-shadow(0 0 1rem #6770d2);
+}
+
+.header-cont{
+    width: 100vw;
+    height: 5rem;
+    background: white;
+    display: flex;
+    align-items: center;
+}
+
+.home-profile{
+    padding: 1rem;
+    
+    margin:auto;
+    margin-left: 80%;
+    margin-right: 2rem;
+    width: min-content;
+    background: rgb(243, 243, 243);
+}
+
+.container1:hover{
+    background: #6770d2;
+    cursor: pointer;
+}
+.edit-comp-branch{
+    display: grid;
+    grid-template-columns: 7rem 7rem 7rem ;
+    gap: 1rem;
+}
