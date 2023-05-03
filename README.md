@@ -32,7 +32,7 @@
 2. After cloning the repository change the directory to the project directory. For that give the command 
    <br>
    
-         cd IRIS_Rec23_221IT059_Django
+         cd IRIS_Rec23_221IT059_Django/irisrec23
       
    <br>
    
