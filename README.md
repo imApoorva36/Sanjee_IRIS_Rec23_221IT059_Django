@@ -106,3 +106,49 @@ In the above google drive there are 8 videos :
 
 1. Google is the main source of reference.
 2. For frontend I have used ***Bootstrap***.
+
+<br>
+
+### Screenshots
+
+Login page view :
+
+![image](https://user-images.githubusercontent.com/104841119/235995512-a62024b1-2899-4a36-b97e-093e865e6a02.png)
+
+Register Page view :
+
+![image](https://user-images.githubusercontent.com/104841119/235995966-52f5bd70-e705-4013-b0cb-02e4f349002e.png)
+
+Home page View :
+
+![image](https://user-images.githubusercontent.com/104841119/235996480-f166bf20-274a-41c4-afca-fab425556b94.png)
+
+Company adding view :
+
+![image](https://user-images.githubusercontent.com/104841119/235996757-57bd32ad-d34f-4738-b457-90e10251a505.png)
+
+Post adding view :
+
+![image](https://user-images.githubusercontent.com/104841119/235997056-4a22f691-b548-4b3c-93cd-022420d1119f.png)
+
+Company details view :
+
+![image](https://user-images.githubusercontent.com/104841119/235997329-f62297ea-b2f2-4552-9897-af9abe41374a.png)
+
+Post details view :
+
+![image](https://user-images.githubusercontent.com/104841119/235997622-6e35d1bf-91ff-4301-a7d1-ad40c6acf9fc.png)
+
+Profile view :
+
+![image](https://user-images.githubusercontent.com/104841119/235997874-688dcaf5-9602-448b-98e5-251a18bd1a06.png)
+
+Application view :
+
+![image](https://user-images.githubusercontent.com/104841119/235998224-49946e95-4b3d-4d7d-a2cd-69a87bd78b48.png)
+
+![image](https://user-images.githubusercontent.com/104841119/235998348-e39bb943-4a7f-4387-a479-bb5681056821.png)
+
+
+
+
