@@ -7,12 +7,22 @@
 
 ### Installation instructions to set up the project from scratch :
 1. To run this project you need to install ***Django*** as this project is made by django framework.
-   In the command promt or terminal give the command ***pip install django***
-2. After the installation has completed, you can verify your Django installation by executing ***django-admin --version*** in the command prompt or terminal.
+   In the command promt or terminal give the following command 
+   <br>
+   
+         pip install django
+      
+   <br>
+2. After the installation has completed, you can verify your Django installation by executing the following command in the    command prompt or terminal.
+   <br>
+   
+         django-admin --version
+      
+   <br>
+
 
 ### Steps to run the project :
 1. Once you install django then either you have to clone this repository or you need to fork it. If you want to clone this repository then run the command following command in the terminal or command promt
-
    <br>
 
          git clone https://github.com/sanjeevholla26/IRIS_Rec23_221IT059_Django.git
@@ -20,7 +30,6 @@
    <br>
 
 2. After cloning the repository change the directory to the project directory. For that give the command 
-
    <br>
    
          cd IRIS_Rec23_221IT059_Django
@@ -67,4 +76,19 @@
 11. ***viewing the list of eligible companies*** : Once a user is registered he will be able to see all the list of posts that he is eligible to apply for. i.e that post should be open for the branch in which user is in and the user should pass the cgpa cutoff for his branch.
 12. ***Applying for a post of a company*** : A user can apply for a post of a company for which he is eligible for. His details like fullname, branch, roll number, ***resume***, cgpa, will be taken from his profile while writing the application. 
 13. ***Seeing the list of applied posts*** : A user can see the list of applied posts and can view the application written by him for that post.
+<br>
 
+### Planned features :
+<br>
+
+1. I want to improve the front end of the website.
+2. Add the feature of giving a provision for the users to edit their applications before the deadline of the company.(wasn not able to do beacause of the shortage of time).
+3. Password change provision.
+4. Users can add more resume's and can select any one of them while applying for a perticular post.
+<br>
+
+### References used :
+<br>
+
+1. Google is the main source of reference.
+2. For frontend I have used ***Bootstrap***.
