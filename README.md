@@ -2,12 +2,20 @@
 
 <br>
 
-#### This is a project done for the recruitment of IRIS Web team. I have choosen the 1st task i.e Career Development Module. Here is the deatiled report of this project.
+#### This is a project done for the recruitment of IRIS Web team. I have choosen the 1st task i.e Career Development Module. Here is the detailed report of this project.
 <br>
 
 ### Video Recordings of the project.
 https://drive.google.com/drive/folders/1SzOOmXtxMVB43iVEcOy6--zfimJMzExF?usp=sharing
-
+In the above google drive there are 8 videos :
+1. Video on the Overview of the whole application.
+2. User registration video.
+3. How different access can be given to different users by Admin.
+4. How Admins can see all the applications.
+5. How Admins can add company and posts.
+6. How the poc of a company can edit the details of that company.
+7. ***Security of the application from backend***
+8. How a student can apply for a company. 
 <br>
 
 ### Installation instructions to set up the project from scratch :
