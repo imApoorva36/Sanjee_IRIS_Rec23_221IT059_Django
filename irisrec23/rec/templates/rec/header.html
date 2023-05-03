@@ -10,6 +10,7 @@
   {% block body %}
   <div class="header-cont">
     <a href="/home">Home</a>
+    <h1>Career Development Module</h1>
     <div class="home-profile">
       <div class="dropdown">
         <button class="btn bt margin: auto;n-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -34,9 +35,7 @@
       <div class="side-bar">
         <a href="/allcomp">All companies</a>
         <a href="/allposts">All Posts</a>
-        <a href="/">Eligible companies for you</a>
         <a href="http://127.0.0.1:8000/applied_posts/">applied comany</a>
-        <a href="/">Watchlist</a>
         {% if special_access %}
           <a href="/addpoc">Give user access</a>
           <a href="/addcomp">Add company</a>
@@ -162,6 +161,10 @@ color: black;
     font-weight: bold;
     font-size: 2rem;
     text-decoration: none;
+}
+.header-cont>h1{
+  font-weight: bolder;
+  color: rgb(70, 70, 70);
 }
   </style>
   {% block body1 %}

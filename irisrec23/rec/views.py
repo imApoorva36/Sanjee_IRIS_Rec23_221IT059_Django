@@ -319,7 +319,8 @@ def add_post(request, id) :
                     "ids" : id,
                     "comp" : comp,
                     "branches" : branches,
-                    "currenttime" : datetime.datetime.now()
+                    "currenttime" : datetime.datetime.now(),
+                    "profile" : request.user.profile
                 })
             
 def editcomp(request, id) :

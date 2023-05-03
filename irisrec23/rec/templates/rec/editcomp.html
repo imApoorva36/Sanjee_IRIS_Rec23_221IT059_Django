@@ -42,6 +42,37 @@
        </button>
        <div class="post-body">
         <h6><strong>Posts added :-</strong></h6>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col">PostName</th>
+              <th scope="col">Package</th>
+              <th scope="col">Application open date</th>
+              <th scope="col">Deadline</th>
+              <th scope="col">Details</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for comp in comp.post.all %}  
+              <tr>
+                  <th scope="row" style="width: 3rem;">{{forloop.counter}}</th>
+                  <td style="font-weight: bolder; letter-spacing: 1.5px;"><strong>{{comp.role.upper}}</strong></td>
+                  <td>{{comp.package}} L</td>
+                  <td> {{comp.open_date}}</td>
+                  <td>
+                  {{comp.deadline}}
+              </td>
+              <td><a href="../viewpost/{{comp.id}}">Details</a></td>
+                  <!-- <td><a href="../deleting_the_selected_post/{{comp.id}}">
+                      <button type="button" class="btn btn-danger" onclick="delete_post()">Delete</button></a>
+                  </td> -->
+              </tr>
+              {% endfor %}
+  
+             
+          </tbody>
+      </table>
     </div>
     
     <!-- Modal -->
@@ -62,6 +93,10 @@
                       <label for="exampleInputEmail1">Post Name</label>
                       <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Post name" name="post" required>
                     </div>
+                    <div class="form-group">
+                      <label>Post Description</label>
+                      <textarea class="form-control" aria-describedby="emailHelp" placeholder="Post Description" name="description" ></textarea>
+                  </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">CTC</label>
                         <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="CTC" name="package" step="any" required>
