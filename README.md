@@ -2,7 +2,12 @@
 
 <br>
 
-#### This is a project done for the recruitment of IRIS Web team. Here is the deatiled report of this project.
+#### This is a project done for the recruitment of IRIS Web team. I have choosen the 1st task i.e Career Development Module. Here is the deatiled report of this project.
+<br>
+
+### Video Recordings of the project.
+https://drive.google.com/drive/folders/1SzOOmXtxMVB43iVEcOy6--zfimJMzExF?usp=sharing
+
 <br>
 
 ### Installation instructions to set up the project from scratch :
