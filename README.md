@@ -96,7 +96,7 @@ In the above google drive there are 8 videos :
 <br>
 
 1. I want to improve the front end of the website.
-2. Add the feature of giving a provision for the users to edit their applications before the deadline of the company.(wasn not able to do beacause of the shortage of time).
+2. Add the feature of giving a provision for the users to edit their applications before the deadline of the company.(was not able to do beacause of the shortage of time).
 3. Password change provision.
 4. Users can add more resume's and can select any one of them while applying for a perticular post.
 <br>
